@@ -1,1 +1,46 @@
-Este ejemplo trata basicamente de hacer animaciones con Scroll en la pantalla 
+*Este ejemplo trata basicamente de hacer animaciones con Scroll en la pantalla 
+*Guardamos el BackGround en un estado
+*Vamos a escuchar cuando la ventana hace scroll y cuando la ventana hace Scroll y para escuchar eventos del window recordemos que debemos crear un efecto que asigne un
+ listener al window y respectivamente en su cleanapp remueve ese listener, entonces creamos una función para controlar el Scroll:
+
+            useEffect(() => {
+                    const handleScroll = () =>{
+                        console.log("Se hizo Scroll");
+                    }
+                }, []);
+
+*Ahora para escuchar el Scroll de la ventana  o mejor dicho asignarle un listenerScroll al window para que cuando ocurra este evento se ejecute la función que acabamos
+ de crear 
+
+            useEffect(() => {
+                    const handleScroll = () =>{
+                        console.log("Se hizo Scroll");
+                    }
+
+                    window.addEventListener('scroll', handleScroll);
+
+                }, []);
+
+
+* Recordemos que en la clase de los efectos cada vez que llamabamos a un listener en un efecto necesitabamos que cuando el componente se desmonte remueva dicho listener 
+ para evitar ciertos problemas y para llamar a una función cuando el componente se desmonta necesitamos colocar el return  y enviar la función que se ejecutara cuando el 
+ componente se desmonte y es cuando hacemos el retur window.removeEventListener:
+
+                useEffect(() => {
+                        const handleScroll = () =>{
+                            console.log("Se hizo Scroll");
+                        }
+
+                        window.addEventListener('scroll', handleScroll);
+
+                        return () => {
+                            window.removeEventListener('scroll', handleScroll);
+                        }
+
+                    }, []);
+
+
+*Referenciamos el div utilizando useRef.
+
+*Ahora como tenemos la referencia podemos utilizar metodos del DOM y vamos a utilizar un metodo que nos da el ancho el alto y también la posición relativa del elemento 
+ y la posición con respecto a la pantalla como tal y ese metodo es getBoundingClientRect()

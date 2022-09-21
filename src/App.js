@@ -1,11 +1,10 @@
 import React from 'react'
+import { ScrollAnimation } from './ScrollAnimation';
 
 function App() {
   return (
     <div>
-      <h1>
-        Soy App
-      </h1>
+      <ScrollAnimation/>
     </div>
   )
 }
